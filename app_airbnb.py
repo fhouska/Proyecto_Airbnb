@@ -22,17 +22,20 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
-# ------- CONFIGURACION DE LA PAGINA---------------------------------#
-st.set_page_config(page_title="Insideairbnb_Estambul",page_icon="⚓",layout= 'wide')
+# Modelo
+from pycaret.regression import load_model, predict_model
+
+# ------- CONFIGURACION DE LA PAGINA---------------------------------------#
+st.set_page_config(page_title="Insideairbnb_Estambul",page_icon="📍",layout= 'wide')
 # """(para que no nos muestre (los waring) lo que cabia de streamlist y nos muestre solo lo que hagamos)"""
 st.set_option('deprecation.showPyplotGlobalUse', False) 
 
-# ------- COSAS QUE VAMOS A USAR EN TODA LA APP----------------------#
+# ------- COSAS QUE VAMOS A USAR EN TODA LA APP----------------------------#
 df = pd.read_csv('df_limpio.csv')
 colors = ['#AF1D56', '#FFDE59', '#CB6CE6', '#FF914D']
 
-# ------- TITULO-----------------------------------------------------#
-image = Image.open('estambul.png')
+# ------- TITULO-----------------------------------------------------------#
+image = Image.open('info/estambul.png')
 st.image(image, caption='',width=400)
 
 st.title ("**Inisde Airbnb: ESTABUL**")
@@ -40,20 +43,41 @@ st.title ("**Inisde Airbnb: ESTABUL**")
 
 
 
-# ------- SIDE BAR-----------------------------------------------------#
+# ------- SIDE BAR----------------------------------------------------------#
 st.sidebar.title ('Inisde Airbnb')
 
+# ------- MENÚ SIDE BAR-----------------------------------------------------#
 with st.sidebar:
     selected = option_menu(
         menu_title= "Menú" ,
         options= ['Introducción','Limpieza de Datos','Análisis Exploratorio','Modelado','Conclusión'], 
         )
 if selected == 'Introducción':
-    st.subheader('aca va Introducción {selected}')
+    st.subheader('Introducción')
+    col1, col2 = st.columns(2)
+    with col1:
+        image2 = Image.open('info/foto_estambul.jpg')
+        st.image(image2, caption='',width=600)
+    with col2:
+        """ **"Inside Airbnb"** es un sitio web que publica información sobre los alojamientos que se encuentran rentados bajo la plataforma de plataforma 
+        Airbnb. Esta web busca mostrar el impacto que tiene esta plataforma en el mercado de la vivienda para cada ciudad.Hemos decidido seleccionar 
+        la ciudad de Estambul. Se etrajeron 7 Dataset, 2 con información de las vivendas rentadas y sus propietarios, 2 con datos del vecindario , 
+        2 con las reviews y uno con el calandario."""
+    
+    st.subheader('Correlation Matrix')
+    df
 
 
 if selected == 'Limpieza de Datos':
     st.subheader('aca vaLimpieza de Datos {selected}')
+
+    st.markdown("""El df esta formado por:  41501 filas y 17 columnas 
+    Cantidad de valores duplicados:  8
+    Cantidad de valores nulos:  118101""", unsafe_allow_html=True,help=None)
+
+
+
+
 
     
 
@@ -62,7 +86,7 @@ if selected == 'Análisis Exploratorio':
 
     tab1, tab2 , tab3, tab4, tab5= st.tabs(["Procesamiento de Datos", "Correlación de las Variables", "Pasajeros","Clases y Lugar de Embarque","Conclusiones"])
     with tab1:
-# ------- COL-----------------------------------------------------#
+# ------- COL-------------------------------------------------------------#
         col1, col2 = st.columns(2)
         with col1:
             feq=df['neighbourhood'].value_counts().sort_values(ascending=True)
@@ -97,9 +121,52 @@ if selected == 'Análisis Exploratorio':
 
 if selected == 'Modelado':
     st.subheader('aca va Modelado {selected}')
+    
+    model = load_model('ml_airbnb')
+
+    st.title('Predicción de Precios de Airbnb en Estambul')
+
+    neighbourhood = st.selectbox('Barrio', options=[
+        'De Baarsjes - Oud-West', 'De Pijp - Rivierenbuurt', 'Centrum-West', 'Centrum-Oost',
+        'Westerpark', 'Zuid', 'Oud-Oost', 'Bos en Lommer', 'Oostelijk Havengebied - Indische Buurt',
+        'Oud-Noord', 'Watergraafsmeer', 'IJburg - Zeeburgereiland', 'Slotervaart', 'Noord-West',
+        'Buitenveldert - Zuidas', 'Noord-Oost', 'Geuzenveld - Slotermeer', 'Osdorp',
+        'De Aker - Nieuw Sloten', 'Gaasperdam - Driemond', 'Bijlmer-Centrum', 'Bijlmer-Oost'
+        ])
+
+    property_type = st.selectbox('Tipo de Propiedad', options=[
+        'Apartment', 'Townhouse', 'Houseboat', 'Bed and breakfast', 'Boat',
+        'Guest suite', 'Loft', 'Serviced apartment', 'House',
+        'Boutique hotel', 'Guesthouse', 'Other', 'Condominium', 'Chalet',
+        'Nature lodge', 'Tiny house', 'Hotel', 'Villa', 'Cabin',
+        'Lighthouse', 'Bungalow', 'Hostel', 'Cottage', 'Tent',
+        'Earth house', 'Campsite', 'Castle', 'Camper/RV', 'Barn',
+        'Casa particular (Cuba)', 'Aparthotel'
+        ])
+
+    accommodates = st.slider('Número de Personas', min_value=1, max_value=17, value=1)
+
+    room_type = st.selectbox('Tipo de Habitación', options=['Private room', 'Entire home/apt', 'Shared room'])
+
+    maximum_nights = st.slider('Noches Máximas', min_value=1, max_value=100, value=1)
+
+    minimum_nights = st.slider('Noches Mínimas', min_value=1, max_value=10, value=1)
+
+    input_data = pd.DataFrame([[
+        neighbourhood, property_type, accommodates, room_type,
+        maximum_nights, minimum_nights
+    ]], columns=['neighbourhood', 'property_type', 'accommodates', 'room_type', 'maximum_nights', 'minimum_nights'])
+
+    if st.button('¡Descubre el precio!'):
+        prediction = predict_model(model, data=input_data)
+        st.write(str(prediction["prediction_label"].values[0]) + ' euros')
+
+
+
+
 
 if selected == 'Conclusión':
-    st.subheader('aca va Conclusión {selected}')
+        st.subheader('aca va Conclusión {selected}')
 
 
 
