@@ -35,8 +35,8 @@ df = pd.read_csv('df_limpio.csv')
 colors = ['#AF1D56', '#FFDE59', '#CB6CE6', '#FF914D']
 
 # ------- TITULO-----------------------------------------------------------#
-image = Image.open('info/estambul.png')
-st.image(image, caption='',width=300)
+# image = Image.open('info/estambul.png')
+# st.image(image, caption='',width=300)
 """
 
 """
@@ -45,7 +45,10 @@ st.title ("**Inisde Airbnb**")
 
 
 
+
 # ------- SIDE BAR----------------------------------------------------------#
+image = Image.open('info/estambul.png')
+st.sidebar.image(image, caption='',width=300)
 st.sidebar.title ('Inisde Airbnb')
 
 # ------- MENÚ SIDE BAR-----------------------------------------------------#
@@ -91,7 +94,7 @@ if selected == 'Introducción':
 if selected == 'Limpieza de Datos':
     st.subheader('Limpieza de Datos')
 
-    """ En el proceso de análisis, se trabajó con 7 archivos de datos obtenidos de la web:
+    """ En el proceso de análisis, se utilizaron 3 de los 7 archivos obtenidos de la web:
     * listings.cvs 
     * listings_details.cvs
     * calendar.csv
@@ -100,19 +103,18 @@ if selected == 'Limpieza de Datos':
     * neighbourhoods.csv
     * neighbourhoods.geojson
 
-    Para llevar a cabo el análisis y construir el modelo predictivo, se utilizaron los conjuntos de datos "listings.csv" y "listings_details.csv". 
-    Además, se empleó el archivo "neighbourhoods.geojson" para crear los mapas.
+    Se utilizaron los archivos "listings.csv", "listings_details.csv" y "neighbourhoods.geojson" para realizar el análisis, construir el modelo predictivo y crear los mapas.
     
     A continuación, se describen los pasos realizados en el proceso de limpieza de datos:
 
     **1 - Selección de columnas**:
-    Dado que el este dataframe listings_details tiene 74 columnas se selccionaron las columnas que serán necesario para el  análisis:
+    Dado que este dataframe "listings_details" tiene 74 columnas, se selccionaron las columnas que serán necesarias para el análisis:
     """
     code = '''columna =["property_type", "accommodates", "first_review", "review_scores_value", "review_scores_cleanliness", "review_scores_location", "review_scores_accuracy", "review_scores_communication", "review_scores_checkin", "review_scores_rating", "maximum_nights", "listing_url", "host_is_superhost", "host_about", "host_response_time", "host_response_rate", "host_listings_count","number_of_reviews_ltm","reviews_per_month"]'''
     st.code(code,language='python')
 
     """**2 -	Merge: listings & listings_details**:
-    Se realizó un proceso de fusión (merge) entre los conjuntos de datos "listings" y "listings_details". Esta fusión se llevó a cabo con el objetivo de combinar la información relevante de ambos conjuntos en un solo dataframe, para facilitar el análisis posterior. . 
+    Se realizó proceso de fusión (merge) entre los conjuntos de datos "listings" y "listings_details". Esta fusión se llevó a cabo con el objetivo de combinar la información relevante de ambos conjuntos en un solo dataframe, para facilitar el análisis posterior. 
     """
     code = '''df = pd.merge(listings, listings_details[columns], on='id', how='left')'''
     st.code(code,language='python')
@@ -120,7 +122,7 @@ if selected == 'Limpieza de Datos':
     """
     **3 - Identificación de duplicados**: No se identificaron valores duplicados.
 
-    **4 - Identificación de valores nulos**: Los valores de valores nulos obtenidos se presentarán en la siguiente tabla:
+    **4 - Identificación de valores nulos**: Los valores nulos obtenidos se presentarán en la siguiente tabla:
     """
     df_null = pd.read_csv('df.csv')
     df_null_percentage = pd.isnull(df_null).sum()/len(df_null)*100 #Calculamos el % del los datos faltantes en cada columna
@@ -132,9 +134,9 @@ if selected == 'Limpieza de Datos':
 
     """
     * Se eliminan las columnas:
-        * neighbourhood_group y license debido a la falta de datos.
-        * host_about ya que contiene la descripción proporcionada por los anfitriones sobre sí mismos, la cual no se consideró relevante para el análisis
-    * En la columna "name", se aplicó la función *fillna()* para reemplazar los valores nulos por la palabra "no name".
+        * *neighbourhood_group* y *license* debido a la falta de datos.
+        * *host_about* ya que contiene la descripción proporcionada por los anfitriones sobre sí mismos, la cual no se consideró relevante para el análisis
+    * En la columna *name*, se aplicó la función *fillna()* para reemplazar los valores nulos por la palabra "no name".
     * En cuanto a las demás columnas que presentan valores nulos y están relacionadas con las reviews, se optó por mantenerlas y reemplazar los valores nulos, ya que representan métricas opcionales y no absolutas.
 
 
@@ -142,7 +144,7 @@ if selected == 'Limpieza de Datos':
     * **host_response_rate**: se realizó la conversión a tipo numérico utilizando la función *to_numeric()*. 
     Esta columna representa el porcentaje de respuestas del anfitrión, y al convertirla a tipo numérico, nos permitirá realizar cálculos y análisis más precisos.
     * **price_euro**: se creó una nueva variable que representa el precio en euros. 
-    Esta transformación se realizó a partir de la columna "price" que originalmente se encuentra en la moneda local (Lira turca). 
+    Esta transformación se realizó a partir de la columna "price" que se encuentra en la moneda local (Lira turca). 
     Para realizar esta conversión, se utilizó el tipo de cambio proporcionado por la web de la Unión Europea, específicamente el tipo de cambio para 
     la fecha 26/06/2023, donde 1 TRY (Lira turca) equivale a 0.04564 EUR (euros). De esta manera, obtenemos una mejor comprensión y percepción del precio.
 
@@ -189,12 +191,13 @@ if selected == 'Análisis Exploratorio':
             fig1 = px.bar(neighbourhood, orientation='h', 
                 template= "plotly_dark",
                 color_discrete_sequence = [colors[3]],
-                height=800    
+                height=700,
+                width=600    
                 )
             fig1.update_layout(
-                title='Average price by neighborhoods',
-                xaxis=dict(title='Average price'),
-                yaxis=dict(title='rneighborhoods'),
+                title='Distribución de distritos',
+                xaxis=dict(title='Cantidades'),
+                yaxis=dict(title=''),
                 title_font_size=20,
                 showlegend=False
                 )
@@ -205,8 +208,8 @@ if selected == 'Análisis Exploratorio':
             dfneighbourhood = dfneighbourhood.reset_index()
             adam = gpd.read_file("data/neighbourhoods.geojson")
             fig2 = px.choropleth_mapbox(dfneighbourhood, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'count', 
-                                        color_continuous_scale='magma', title="Districts of Istanbul",zoom=10, hover_data = ['neighbourhood','count'],
-                                        mapbox_style="carto-positron",width=1000, height=800,center = {"lat": 41.0036, "lon": 28.9737})
+                                        color_continuous_scale='magma', title="Distritos de Estambul",zoom=10, hover_data = ['neighbourhood','count'],
+                                        mapbox_style="carto-positron",width=700, height=700,center = {"lat": 41.0036, "lon": 28.9737})
             fig2.update(layout_coloraxis_showscale=True)
             fig2.update_layout( paper_bgcolor="#fff",font_color="#AF1D56",title_font_size=20, title_x = 0.2)
             st.plotly_chart(fig2)
@@ -230,15 +233,14 @@ if selected == 'Análisis Exploratorio':
         dfprecio = dfprecio.reset_index()
         #ahora graficamos con plotly
         fig3 = px.area(dfprecio, x="neighbourhood", y="price_euro",
-                template= "plotly_dark", 
-                title = "Average daily price based on location in Amsterdam",
+                template= "plotly_dark",
                 color_discrete_sequence = [colors[2]], 
                 )
 
         fig3.update_layout(
-        title='Average price by neighborhoods',
-        xaxis=dict(title='average price'),
-        yaxis=dict(title='neighborhoods'),
+        title='Precio promedio de alojamientos por distrito',
+        xaxis=dict(title='distritos'),
+        yaxis=dict(title='euros'),
         showlegend=False,
         width=1300,
                 )
@@ -271,20 +273,20 @@ if selected == 'Análisis Exploratorio':
              color_discrete_sequence = [colors[1]])
 
             fig5.update_layout(
-            title='Room_type',
+            title='Tipos de habitación',
             showlegend=False
             )
             st.plotly_chart(fig5)
 
         with col2:
-            propertytype=df['property_type'].value_counts().sort_values(ascending=False).head(15)
+            propertytype=df['property_type'].value_counts().sort_values(ascending=False).head(10)
             fig6 = px.bar(propertytype, 
                 template= "plotly_dark",
                 color_discrete_sequence = [colors[3]],
                 #    height=800    
                 )
             fig6.update_layout(
-                title='First 15 Property Types',
+                title='Tipos de habitación (Top 10)',
                 showlegend=False
                 )
             st.plotly_chart(fig6)
@@ -295,7 +297,7 @@ if selected == 'Análisis Exploratorio':
                             color_discrete_sequence=colors, template='plotly_dark')
 
         fig4.update_layout(
-                title='Sobrevivientes por Clase',
+                title='Distribución por tipo de habitación y tipo de propiedad',
                 xaxis=dict(title='Edad'),
                 yaxis=dict(title='Cantidad'),
                 bargap=0.1,
@@ -306,17 +308,30 @@ if selected == 'Análisis Exploratorio':
 
 # ANALISIS PROPIETARIOS
 
+    with tab5:
 
+        fig7 = px.box(df, x="review_scores_value",y= 'host_is_superhost',
+                    template="plotly_dark",
+                    color_discrete_sequence = colors
+                    )
+
+        fig7.update_layout(
+            title='Numero de Reseñas',
+            xaxis=dict(title='Calificaciones'),
+            yaxis=dict(title=''),
+            bargap=0.1,
+            showlegend=True 
+            )
+        st.plotly_chart(fig7)
 
 
  
-    
 
 if selected == 'Modelo Predictivo':
     st.subheader('Modelo Predictivo')
     """
-    Para a realizar este modelo utilizamos la librería **pycaret** 
-    Definimos la variable **precio_euro** como nuestra variable objetivo y se selecciona el modelo de **regresión lineal**.
+    En la implementación de este modelo, utilizamos la biblioteca **pycaret**. Nuestro objetivo principal es predecir la variable **"precio_euro"**,
+    por lo que la configuramos como nuestra variable objetivo. Para lograr esto, elegimos el modelo de regresión lineal..
 
     """
     model = load_model('ml_airbnb')
