@@ -36,10 +36,14 @@ colors = ['#AF1D56', '#FFDE59', '#CB6CE6', '#FF914D']
 
 # ------- TITULO-----------------------------------------------------------#
 image = Image.open('info/estambul.png')
-st.image(image, caption='',width=400)
+st.image(image, caption='',width=300)
+"""
 
-st.title ("**Inisde Airbnb: ESTABUL**")
-
+"""
+st.title ("**Inisde Airbnb**")
+"""
+  
+"""
 
 
 
@@ -82,42 +86,158 @@ if selected == 'Limpieza de Datos':
     
 
 if selected == 'Análisis Exploratorio':
-    st.subheader('aca va Análisis Exploratorio {selected}')
+    st.subheader('Análisis Exploratorio')
 
-    tab1, tab2 , tab3, tab4, tab5= st.tabs(["Procesamiento de Datos", "Correlación de las Variables", "Pasajeros","Clases y Lugar de Embarque","Conclusiones"])
-    with tab1:
+    """ aca va una breve intruduccion a como analizamos las variables"""
+
+    tab1, tab2 , tab3, tab4, tab5= st.tabs(["Visualización de datos", "Distritos", "Precios","Alojamientos","Porpietarios"])
+
+# TABLEREO POWER BI
+    with tab1: 
+        """ aca va el tablero BI"""
+
+# ANALISIS DISTRITOS
+
+    with tab2:
+        """ Estambul esta dividida por **39 distritos** en los cuales podemos ver según la gráfica y en el mapa que la mayoría de los hospedajes 
+        se encuentran en los distritos de: Beyoglu, Sisli, Kadikoy y Fatih."""
+        """
+        * **Beyoglu**: es la zona donde las comunidades extranjeras establecieron las embajadas y las iglesias, y donde en el siglo XX se levantaron grandes hoteles y tiendas más lujosas.
+        * **Sisli**: es el distrito de cines y lugares de ocio. Aquí se encuentran entre otras cosas salas de conciertos y teatros.
+        * **Kadikoy**: es un distrito residencial y es conocido por su mercado de pescado y productos agrícolas y por lo general los turistas y locales aprovecha a comprar especias, tés o frutos secos.
+        * **Fatih**: es el distrito donde se encuentra su barrio histórico, aquí se encuentra La mezquita de Fatih, que es una de las mas grandes de la ciudad, así como también el acueducto romano ente otras tantos edificios y monumentos históricos.
+
+        """
+
 # ------- COL-------------------------------------------------------------#
         col1, col2 = st.columns(2)
         with col1:
-            feq=df['neighbourhood'].value_counts().sort_values(ascending=True)
-            fig1 = px.bar(feq, 
-                orientation='h', 
-                title = "Number of listings by neighbourhood", 
+            neighbourhood=df['neighbourhood'].value_counts().sort_values(ascending=True)
+            fig1 = px.bar(neighbourhood, orientation='h', 
                 template= "plotly_dark",
-                color_discrete_sequence = colors)
+                color_discrete_sequence = [colors[3]],
+                height=800    
+                )
+            fig1.update_layout(
+                title='Average price by neighborhoods',
+                xaxis=dict(title='Average price'),
+                yaxis=dict(title='rneighborhoods'),
+                title_font_size=20,
+                showlegend=False
+                )
             st.plotly_chart(fig1)
              
         with col2:
-            price_mean = df.groupby('neighbourhood')['price_euro'].mean().round(2).sort_values(ascending=True)
-            fig2 = px.bar(price_mean, orientation='h', title = "Number of listings by neighbourhood", template= "plotly_dark")
-            st.plotly_chart(fig2)
-    
-    with tab2:
-        col3, col4 = st.columns(2)
-        with col3:
-            dfneighbourhood = pd.DataFrame(feq)
+            dfneighbourhood = pd.DataFrame(neighbourhood)
             dfneighbourhood = dfneighbourhood.reset_index()
             adam = gpd.read_file("data/neighbourhoods.geojson")
-            fig3 = px.choropleth_mapbox(dfneighbourhood, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'count', 
-                            color_continuous_scale="portland", title="Neighbourhoods in Istambul",zoom=10, hover_data = ['neighbourhood','count'],
-                            mapbox_style="carto-positron",width=1000, height=750,center = {"lat": 41.0036, "lon": 28.5737})
-            fig3.update(layout_coloraxis_showscale=True)
-            fig3.update_layout( paper_bgcolor="#1f2630",font_color="white",title_font_size=20, title_x = 0.5)
-            st.plotly_chart(fig3)
+            fig2 = px.choropleth_mapbox(dfneighbourhood, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'count', 
+                                        color_continuous_scale='magma', title="Districts of Istanbul",zoom=10, hover_data = ['neighbourhood','count'],
+                                        mapbox_style="carto-positron",width=1000, height=800,center = {"lat": 41.0036, "lon": 28.9737})
+            fig2.update(layout_coloraxis_showscale=True)
+            fig2.update_layout( paper_bgcolor="#fff",font_color="#AF1D56",title_font_size=20, title_x = 0.2)
+            st.plotly_chart(fig2)
+
+# ANALISIS PRECIOS 
+    with tab3:
+        """
+        Precios: Este gráfico se muestran los valores en euros para mejor entendimiento y dimensión. 
+        El precio medio de alojamientos en Estambul es ₺2.007,34 (liras turcas) que equivalen a €91,12 euros al tipo de cambio del 26/06/23.
+        El distrito con mayor valor de media es el distrito de **Beylikduzu** con **€344,29**
+        Para los distritos con mayor distribución son:
+        * Beyoglu: € 88,11
+        * Sisli: € 82,55
+        * Kadikoy: € 108,3
+        * Fatih: € 91,03
+
+        """
+        st.subheader(' ')
+        price_mean = df.groupby('neighbourhood')['price_euro'].mean().round(2).sort_values(ascending=True)
+        dfprecio = pd.DataFrame(price_mean)
+        dfprecio = dfprecio.reset_index()
+        #ahora graficamos con plotly
+        fig3 = px.area(dfprecio, x="neighbourhood", y="price_euro",
+                template= "plotly_dark", 
+                title = "Average daily price based on location in Amsterdam",
+                color_discrete_sequence = [colors[2]], 
+                )
+
+        fig3.update_layout(
+        title='Average price by neighborhoods',
+        xaxis=dict(title='average price'),
+        yaxis=dict(title='neighborhoods'),
+        showlegend=False,
+        width=1300,
+                )
+        st.plotly_chart(fig3)
+
+# ANALISIS ALOJAMIENTOS
+    with tab4:
+        """
+        Con este gráfico podemos ver los diferentes alojamientos ofrecidos.
+        
+        Por un lado, están diferentes ***tipos de habitación***: 
+        * Entire home/apt - (**Casa/apartamento completo**)
+        * Private room - (**Habitación privada**)
+        * Hotel room - (**Habitación de hotel**)
+        * Shared room - (**Habitación compartida**)
+
+        Luego están los diferentes ***tipos de propiedad***: en los que se pueden diferenciar 109 diferentes tipos.
+
+        Por lo que podemos tener: “Entire serviced apartment”, que corresponden a apartamento completo con servicio hasta “Private room in tent” que son Habitación privada en tienda de campaña.
+        Lo que se puede ver que lo que mas se predomina es Casa/apartamento completo con mas de la mitad de los datos.
+        """
 
 
-        with col4:
-            """aca va algo"""
+
+        col1, col2 = st.columns(2)
+        with col1:
+            fig5 = px.histogram(df,'room_type',
+             nbins = 20,
+             template= "plotly_dark",
+             color_discrete_sequence = [colors[1]])
+
+            fig5.update_layout(
+            title='Room_type',
+            showlegend=False
+            )
+            st.plotly_chart(fig5)
+
+        with col2:
+            propertytype=df['property_type'].value_counts().sort_values(ascending=False).head(15)
+            fig6 = px.bar(propertytype, 
+                template= "plotly_dark",
+                color_discrete_sequence = [colors[3]],
+                #    height=800    
+                )
+            fig6.update_layout(
+                title='First 15 Property Types',
+                showlegend=False
+                )
+            st.plotly_chart(fig6)
+        
+        rooms = df.groupby(['neighbourhood', 'room_type','property_type','accommodates']).size().reset_index(name='Count')
+        # Crear el gráfico de barras agrupadas
+        fig4 = px.treemap(rooms, path=['room_type','property_type'], values='Count', 
+                            color_discrete_sequence=colors, template='plotly_dark')
+
+        fig4.update_layout(
+                title='Sobrevivientes por Clase',
+                xaxis=dict(title='Edad'),
+                yaxis=dict(title='Cantidad'),
+                bargap=0.1,
+                width=1300,
+                showlegend=True
+            )
+        st.plotly_chart(fig4)
+
+# ANALISIS PROPIETARIOS
+
+
+
+
+ 
+    
 
 if selected == 'Modelado':
     st.subheader('aca va Modelado {selected}')

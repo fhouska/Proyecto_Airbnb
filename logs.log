@@ -3293,3 +3293,21 @@ THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib's team with an
 2023-06-26 20:12:57,727:INFO:Preloading libraries
 2023-06-26 20:12:57,729:INFO:Set up data.
 2023-06-26 20:12:57,741:INFO:Set up index.
+2023-06-27 11:44:03,143:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2023-06-27 11:44:03,144:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2023-06-27 11:44:03,144:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2023-06-27 11:44:03,144:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2023-06-27 11:44:09,862:WARNING:
+'prophet' is a soft dependency and not included in the pycaret installation. Please run: `pip install prophet` to install.
+2023-06-27 11:44:19,830:INFO:Initializing load_model()
+2023-06-27 11:44:19,831:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-27 11:45:38,984:INFO:Initializing load_model()
+2023-06-27 11:45:38,984:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-27 14:41:34,858:INFO:Initializing load_model()
+2023-06-27 14:41:34,862:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-27 14:55:03,302:INFO:Initializing load_model()
+2023-06-27 14:55:03,304:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
