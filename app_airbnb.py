@@ -58,32 +58,87 @@ with st.sidebar:
         )
 if selected == 'Introducción':
     st.subheader('Introducción')
+
     col1, col2 = st.columns(2)
     with col1:
         image2 = Image.open('info/foto_estambul.jpg')
-        st.image(image2, caption='',width=600)
+        st.image(image2, caption='',width=550)
     with col2:
-        """ **"Inside Airbnb"** es un sitio web que publica información sobre los alojamientos que se encuentran rentados bajo la plataforma de plataforma 
-        Airbnb. Esta web busca mostrar el impacto que tiene esta plataforma en el mercado de la vivienda para cada ciudad.Hemos decidido seleccionar 
-        la ciudad de Estambul. Se etrajeron 7 Dataset, 2 con información de las vivendas rentadas y sus propietarios, 2 con datos del vecindario , 
-        2 con las reviews y uno con el calandario."""
+
+        image3 = Image.open('info/mapa.png')
+        st.image(image3, caption='',width=600)
     
-    st.subheader('Correlation Matrix')
-    df
+    st.subheader('')
+    """ **"Inside Airbnb"** es un sitio web que publica información sobre los alojamientos que se encuentran rentados bajo la plataforma de plataforma Airbnb. 
+    Este sitio web busca mostrar el impacto que tiene esta plataforma en el mercado de la vivienda para cada ciudad.
+
+    Se seleccionó la ciudad de Estambul por ser una ciudad con mucha historia, cultura y además de su cultura gastronómica. Es conocida por ser La ciudad de las mil mezquitas. Por lo que su cultura es muy atractiva.
+    ¿Sabías que es la única ciudad del mundo que se encuentra entre dos continentes, Asia y Europa? 
+
+    **Objetivo de análisis**:
+    El objetivo de este análisis es ver cómo es la oferta de alojamientos en esta ciudad y para ello se realizaron diferentes planteamientos:
+    * ¿Cómo es la distribución de los alojamientos?
+    * ¿Cómo es el precio de los alojamientos?
+    * ¿Qué tipos de alojamientos se ofrecen?
+    * ¿Cómo son los propietarios?
+
+    """
 
 
 if selected == 'Limpieza de Datos':
-    st.subheader('aca vaLimpieza de Datos {selected}')
+    st.subheader('Limpieza de Datos')
 
-    st.markdown("""El df esta formado por:  41501 filas y 17 columnas 
-    Cantidad de valores duplicados:  8
-    Cantidad de valores nulos:  118101""", unsafe_allow_html=True,help=None)
+    """ En la web podemos encontrarnos con 7 documentos:
+    * listings.cvs 
+    * listings_details.cvs
+    * calendar.csv
+    * reviews.csv
+    * reviews_details.csv
+    * neighbourhoods.csv
+    * neighbourhoods.geojson
+
+    Para el análisis se utilizaron los datasets: listings.cvs y listings_details.cvs para realizar los análisis y el modelo predictivo; y el documento neighbourhoods.geojson para realizar los mapas.
+
+    Los pasos que se realizaron son:
+
+    **1 - Selección de columnas**:
+    Dado que el este dataframe listings_details tiene 74 columnas se selccionaron las columnas que serán necesario para el  análisis:
+    """
+    code = '''columna =["property_type", "accommodates", "first_review", "review_scores_value", "review_scores_cleanliness", "review_scores_location", "review_scores_accuracy", "review_scores_communication", "review_scores_checkin", "review_scores_rating", "maximum_nights", "listing_url", "host_is_superhost", "host_about", "host_response_time", "host_response_rate", "host_listings_count","number_of_reviews_ltm","reviews_per_month"]'''
+    st.code(code,language='python')
+
+    """**2 -	Merge: listings & listings_details**:
+    Luego se procede a realizar un merge entre los listados listing y listings_details. 
+    """
+    code = '''df = pd.merge(listings, listings_details[columns], on='id', how='left')'''
+    st.code(code,language='python')
+
+    """
+    **3 - Identificación de duplicados**: No se identificaron valores nulos
+
+    **4 - Identificación de valores nulos**: Se realizón na función que nos muesta el % de valores nulos y obtuvimos:
+    """
+    df_null = df.isnull().sum().sort_values(ascending=False).reset_index()
+    st.write(df_null,height=100,width=500 )
+
+    """
+    * Las columnas: **neighbourhood_group** y **license** no contienen datos por lo que eliminan.
+    * La columna: **host_about** se elimina ya que contiene la descripción que hace el host para presentarse en la plataforma por lo que no se considera necesaria para el análisis.
+    * La columna: **name** aplicamos la función fillna para reemplazar los valores nulos por la palabra: “no name”.
+    * El resto de las columnas que presentan valores nulos se reemplazan ya que corresponden a variables relacionadas con la reviews y se utilizarán de esta manera ya que es una métrica opcional, no absoluta.
 
 
+    **5 - Transformación de columnas**
+    * **host_response_rate**: se convierte a numérica con la función to_numeric.
+    * **price_euro**: se crea una nueva variable con la columna price convertida a euro ya que esta columna viene en moneda local (Lira turca) y así poder tener una mejor comprensión y percepción. 
+    El tipo de cambio utilizado es de la web de la unión europea:
+    El tipo de cambio a la fecha fecha: 26/06/2023 es 1 TRY = 0.04564 EUR
 
+    Datasets:http://insideairbnb.com/get-the-data.html 
 
+    Tipos de cambio: https://commission.europa.eu/funding-tenders/procedures-guidelines-tenders/information-contractors-and-beneficiaries/exchange-rate-inforeuro_es
 
-    
+    """
 
 if selected == 'Análisis Exploratorio':
     st.subheader('Análisis Exploratorio')
