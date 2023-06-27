@@ -41,10 +41,7 @@ st.image(image, caption='',width=300)
 
 """
 st.title ("**Inisde Airbnb**")
-"""
 
-
-"""
 
 
 
@@ -55,7 +52,7 @@ st.sidebar.title ('Inisde Airbnb')
 with st.sidebar:
     selected = option_menu(
         menu_title= "Menú" ,
-        options= ['Introducción','Limpieza de Datos','Análisis Exploratorio','Modelado','Conclusión'], 
+        options= ['Introducción','Limpieza de Datos','Análisis Exploratorio','Modelo Predictivo','Conclusión'], 
         )
 if selected == 'Introducción':
     st.subheader('Introducción')
@@ -70,26 +67,31 @@ if selected == 'Introducción':
         st.image(image3, caption='',width=600)
     
     st.subheader('')
-    """ **"Inside Airbnb"** es un sitio web que publica información sobre los alojamientos que se encuentran rentados bajo la plataforma de plataforma Airbnb. 
-    Este sitio web busca mostrar el impacto que tiene esta plataforma en el mercado de la vivienda para cada ciudad.
+    """
+    "**Inside Airbnb**" es un sitio web que proporciona información sobre los alojamientos disponibles para alquilar en la plataforma de Airbnb. El objetivo de este sitio web es mostrar el impacto que tiene esta plataforma en el mercado de la vivienda en cada ciudad. 
+    Para este análisis, hemos seleccionado la ciudad de Estambul, conocida por su rica historia, cultura y su gastronomía. A menudo se le llama la "Ciudad de las Mil Mezquitas". 
+    
+    ¿Sabías que Estambul es la única ciudad en el mundo ubicada entre dos continentes, Asia y Europa?
 
-    Se seleccionó la ciudad de Estambul por ser una ciudad con mucha historia, cultura y además de su cultura gastronómica. Es conocida por ser La ciudad de las mil mezquitas. Por lo que su cultura es muy atractiva.
-    ¿Sabías que es la única ciudad del mundo que se encuentra entre dos continentes, Asia y Europa? 
+    **Objetivo**:
+    El objetivo de este análisis es explorar la oferta de alojamientos en Estambul. Examinaremos varios aspectos, como la distribución de los alojamientos, las tendencias de precios, los tipos de alojamientos disponibles y las características de los anfitriones.
 
-    **Objetivo de análisis**:
-    El objetivo de este análisis es ver cómo es la oferta de alojamientos en esta ciudad y para ello se realizaron diferentes planteamientos:
-    * ¿Cómo es la distribución de los alojamientos?
-    * ¿Cómo es el precio de los alojamientos?
-    * ¿Qué tipos de alojamientos se ofrecen?
-    * ¿Cómo son los propietarios?
+    Las preguntas clave que buscamos responder son:
+    * ¿Cómo se distribuyen los alojamientos en Estambul en general?
+    * ¿Cómo varían los precios en diferentes tipos de alojamientos?
+    * ¿Cuáles son los tipos de alojamientos más comunes en Estambul?
+    * ¿Qué podemos aprender sobre los anfitriones de estos alojamientos?
+
+    Al abordar estas preguntas, buscamos obtener información sobre la dinámica del mercado de Airbnb en Estambul y comprender mejor las características del panorama de alojamientos en la ciudad
 
     """
+
 
 
 if selected == 'Limpieza de Datos':
     st.subheader('Limpieza de Datos')
 
-    """ En la web podemos encontrarnos con 7 documentos:
+    """ En el proceso de análisis, se trabajó con 7 archivos de datos obtenidos de la web:
     * listings.cvs 
     * listings_details.cvs
     * calendar.csv
@@ -98,9 +100,10 @@ if selected == 'Limpieza de Datos':
     * neighbourhoods.csv
     * neighbourhoods.geojson
 
-    Para el análisis se utilizaron los datasets: listings.cvs y listings_details.cvs para realizar los análisis y el modelo predictivo; y el documento neighbourhoods.geojson para realizar los mapas.
-
-    Los pasos que se realizaron son:
+    Para llevar a cabo el análisis y construir el modelo predictivo, se utilizaron los conjuntos de datos "listings.csv" y "listings_details.csv". 
+    Además, se empleó el archivo "neighbourhoods.geojson" para crear los mapas.
+    
+    A continuación, se describen los pasos realizados en el proceso de limpieza de datos:
 
     **1 - Selección de columnas**:
     Dado que el este dataframe listings_details tiene 74 columnas se selccionaron las columnas que serán necesario para el  análisis:
@@ -109,33 +112,42 @@ if selected == 'Limpieza de Datos':
     st.code(code,language='python')
 
     """**2 -	Merge: listings & listings_details**:
-    Luego se procede a realizar un merge entre los listados listing y listings_details. 
+    Se realizó un proceso de fusión (merge) entre los conjuntos de datos "listings" y "listings_details". Esta fusión se llevó a cabo con el objetivo de combinar la información relevante de ambos conjuntos en un solo dataframe, para facilitar el análisis posterior. . 
     """
     code = '''df = pd.merge(listings, listings_details[columns], on='id', how='left')'''
     st.code(code,language='python')
 
     """
-    **3 - Identificación de duplicados**: No se identificaron valores nulos
+    **3 - Identificación de duplicados**: No se identificaron valores duplicados.
 
-    **4 - Identificación de valores nulos**: Se realizón na función que nos muesta el % de valores nulos y obtuvimos:
+    **4 - Identificación de valores nulos**: Los valores de valores nulos obtenidos se presentarán en la siguiente tabla:
     """
-    df_null = df.isnull().sum().sort_values(ascending=False).reset_index()
-    st.write(df_null,height=100,width=500 )
+    df_null = pd.read_csv('df.csv')
+    df_null_percentage = pd.isnull(df_null).sum()/len(df_null)*100 #Calculamos el % del los datos faltantes en cada columna
+    nulos_totales= df_null_percentage.sort_values(ascending = False).round(2) #Ordenamos de mayor a menor
+    nulos_totales = pd.DataFrame(nulos_totales,columns=["% nulos"])
+
+    # df_null1 = df_null.isnull().sum().sort_values(ascending=False).reset_index(name='Count')
+    st.write(nulos_totales,height=100,width=550 )
 
     """
-    * Las columnas: **neighbourhood_group** y **license** no contienen datos por lo que eliminan.
-    * La columna: **host_about** se elimina ya que contiene la descripción que hace el host para presentarse en la plataforma por lo que no se considera necesaria para el análisis.
-    * La columna: **name** aplicamos la función fillna para reemplazar los valores nulos por la palabra: “no name”.
-    * El resto de las columnas que presentan valores nulos se reemplazan ya que corresponden a variables relacionadas con la reviews y se utilizarán de esta manera ya que es una métrica opcional, no absoluta.
+    * Se eliminan las columnas:
+        * neighbourhood_group y license debido a la falta de datos.
+        * host_about ya que contiene la descripción proporcionada por los anfitriones sobre sí mismos, la cual no se consideró relevante para el análisis
+    * En la columna "name", se aplicó la función *fillna()* para reemplazar los valores nulos por la palabra "no name".
+    * En cuanto a las demás columnas que presentan valores nulos y están relacionadas con las reviews, se optó por mantenerlas y reemplazar los valores nulos, ya que representan métricas opcionales y no absolutas.
 
 
     **5 - Transformación de columnas**
-    * **host_response_rate**: se convierte a numérica con la función to_numeric.
-    * **price_euro**: se crea una nueva variable con la columna price convertida a euro ya que esta columna viene en moneda local (Lira turca) y así poder tener una mejor comprensión y percepción. 
-    El tipo de cambio utilizado es de la web de la unión europea:
-    El tipo de cambio a la fecha fecha: 26/06/2023 es 1 TRY = 0.04564 EUR
+    * **host_response_rate**: se realizó la conversión a tipo numérico utilizando la función *to_numeric()*. 
+    Esta columna representa el porcentaje de respuestas del anfitrión, y al convertirla a tipo numérico, nos permitirá realizar cálculos y análisis más precisos.
+    * **price_euro**: se creó una nueva variable que representa el precio en euros. 
+    Esta transformación se realizó a partir de la columna "price" que originalmente se encuentra en la moneda local (Lira turca). 
+    Para realizar esta conversión, se utilizó el tipo de cambio proporcionado por la web de la Unión Europea, específicamente el tipo de cambio para 
+    la fecha 26/06/2023, donde 1 TRY (Lira turca) equivale a 0.04564 EUR (euros). De esta manera, obtenemos una mejor comprensión y percepción del precio.
 
-    Datasets:http://insideairbnb.com/get-the-data.html 
+
+    Datasets: http://insideairbnb.com/get-the-data.html 
 
     Tipos de cambio: https://commission.europa.eu/funding-tenders/procedures-guidelines-tenders/information-contractors-and-beneficiaries/exchange-rate-inforeuro_es
 
@@ -144,13 +156,16 @@ if selected == 'Limpieza de Datos':
 if selected == 'Análisis Exploratorio':
     st.subheader('Análisis Exploratorio')
 
-    """ aca va una breve intruduccion a como analizamos las variables"""
+    """ Para responder a las preguntas planteadas al inicio, se dividió el análisis en cuatro secciones principales. 
+    Además, se creó un tablero de Power BI para obtener una visión resumida de los datos. 
+    
+    A continuación, se detallan las secciones del análisis y la funcionalidad del tablero de Power BI."""
 
-    tab1, tab2 , tab3, tab4, tab5= st.tabs(["Visualización de datos", "Distritos", "Precios","Alojamientos","Porpietarios"])
+    tab1, tab2 , tab3, tab4, tab5= st.tabs(["Visualización de datos", "1. Distritos", "2. Precios","3. Alojamientos","4. Porpietarios"])
 
 # TABLEREO POWER BI
     with tab1: 
-        link = '<<iframe title="Airbnb_Estambul" width="1540" height="841.25" src="https://app.fabric.microsoft.com/reportEmbed?reportId=d15b01e9-003c-41df-aeb4-a4728af89d08&autoAuth=true&ctid=8aebddb6-3418-43a1-a255-b964186ecc64" frameborder="0" allowFullScreen="true"></iframe>'
+        link = '<iframe title="Airbnb_Estambul" width="1440" height="841.25" src="https://app.fabric.microsoft.com/reportEmbed?reportId=d15b01e9-003c-41df-aeb4-a4728af89d08&autoAuth=true&ctid=8aebddb6-3418-43a1-a255-b964186ecc64" frameborder="0" allowFullScreen="true"></iframe>'
         st.markdown(link, unsafe_allow_html=True)  
 
 
@@ -200,13 +215,13 @@ if selected == 'Análisis Exploratorio':
     with tab3:
         """
         Precios: Este gráfico se muestran los valores en euros para mejor entendimiento y dimensión. 
-        El precio medio de alojamientos en Estambul es ₺2.007,34 (liras turcas) que equivalen a €91,12 euros al tipo de cambio del 26/06/23.
+        El precio medio de alojamientos en Estambul es **TRY 2.007,34  (liras turcas)** que equivalen a **EUR 91,12 ** euros al tipo de cambio del 26/06/23.
         El distrito con mayor valor de media es el distrito de **Beylikduzu** con **€344,29**
         Para los distritos con mayor distribución son:
-        * Beyoglu: € 88,11
-        * Sisli: € 82,55
-        * Kadikoy: € 108,3
-        * Fatih: € 91,03
+        * Beyoglu: EUR 88,11
+        * Sisli: EUR 82,55
+        * Kadikoy: EUR 108,3
+        * Fatih: EUR 91,03
 
         """
         st.subheader(' ')
@@ -297,34 +312,78 @@ if selected == 'Análisis Exploratorio':
  
     
 
-if selected == 'Modelado':
-    st.subheader('aca va Modelado {selected}')
-    
+if selected == 'Modelo Predictivo':
+    st.subheader('Modelo Predictivo')
+    """
+    Para a realizar este modelo utilizamos la librería **pycaret** 
+    Definimos la variable **precio_euro** como nuestra variable objetivo y se selecciona el modelo de **regresión lineal**.
+
+    """
     model = load_model('ml_airbnb')
 
     st.title('Predicción de Precios de Airbnb en Estambul')
 
-    neighbourhood = st.selectbox('Barrio', options=[
-        'De Baarsjes - Oud-West', 'De Pijp - Rivierenbuurt', 'Centrum-West', 'Centrum-Oost',
-        'Westerpark', 'Zuid', 'Oud-Oost', 'Bos en Lommer', 'Oostelijk Havengebied - Indische Buurt',
-        'Oud-Noord', 'Watergraafsmeer', 'IJburg - Zeeburgereiland', 'Slotervaart', 'Noord-West',
-        'Buitenveldert - Zuidas', 'Noord-Oost', 'Geuzenveld - Slotermeer', 'Osdorp',
-        'De Aker - Nieuw Sloten', 'Gaasperdam - Driemond', 'Bijlmer-Centrum', 'Bijlmer-Oost'
+    neighbourhood = st.selectbox('Barrio', options=['Besiktas', 'Beyoglu', 'Sisli', 'Sariyer', 'Fatih', 'Uskudar',
+       'Kadikoy', 'Kagithane', 'Basaksehir', 'Bagcilar', 'Maltepe',
+       'Esenyurt', 'Beykoz', 'Cekmekoy', 'Sancaktepe', 'Atasehir',
+       'Tuzla', 'Pendik', 'Bahcelievler', 'Kartal', 'Beylikduzu',
+       'Bakirkoy', 'Adalar', 'Gaziosmanpasa', 'Zeytinburnu',
+       'Kucukcekmece', 'Umraniye', 'Eyup', 'Gungoren', 'Avcilar', 'Sile',
+       'Arnavutkoy', 'Buyukcekmece', 'Bayrampasa', 'Catalca', 'Esenler',
+       'Silivri', 'Sultangazi', 'Sultanbeyli'
         ])
 
-    property_type = st.selectbox('Tipo de Propiedad', options=[
-        'Apartment', 'Townhouse', 'Houseboat', 'Bed and breakfast', 'Boat',
-        'Guest suite', 'Loft', 'Serviced apartment', 'House',
-        'Boutique hotel', 'Guesthouse', 'Other', 'Condominium', 'Chalet',
-        'Nature lodge', 'Tiny house', 'Hotel', 'Villa', 'Cabin',
-        'Lighthouse', 'Bungalow', 'Hostel', 'Cottage', 'Tent',
-        'Earth house', 'Campsite', 'Castle', 'Camper/RV', 'Barn',
-        'Casa particular (Cuba)', 'Aparthotel'
+    property_type = st.selectbox('Tipo de Propiedad', options=['Entire rental unit', 'Private room in loft',
+       'Entire serviced apartment', 'Private room in home',
+       'Private room in rental unit', 'Entire home',
+       'Room in serviced apartment', 'Entire loft',
+       'Private room in villa', 'Private room in serviced apartment',
+       'Entire condo', 'Private room in townhouse', 'Shared room in home',
+       'Entire cabin', 'Camper/RV', 'Room in aparthotel',
+       'Shared room in rental unit', 'Room in boutique hotel',
+       'Private room in condo', 'Private room', 'Entire villa',
+       'Private room in bed and breakfast', 'Entire bed and breakfast',
+       'Entire townhouse', 'Entire chalet', 'Room in hotel',
+       'Entire cottage', 'Shared room in loft', 'Shared room in hotel',
+       'Tiny home', 'Private room in yurt', 'Room in hostel',
+       'Room in bed and breakfast', 'Shared room in condo',
+       'Private room in treehouse', 'Private room in hostel',
+       'Entire vacation home', 'Earthen home', 'Tent',
+       'Entire guest suite', 'Entire place', 'Entire hostel',
+       'Private room in hut', 'Private room in guesthouse',
+       'Private room in casa particular', 'Private room in nature lodge',
+       'Boat', 'Shared room in boutique hotel', 'Shared room in barn',
+       'Shared room in casa particular', 'Shared room in hostel',
+       'Farm stay', 'Private room in guest suite',
+       'Private room in tiny home', 'Island', 'Private room in castle',
+       'Shared room in villa', 'Yurt', 'Private room in farm stay',
+       'Private room in boat', 'Room in pension',
+       'Shared room in tiny home', 'Private room in cottage',
+       'Room in nature lodge', 'Entire guesthouse',
+       'Shared room in townhouse', 'Shared room in bed and breakfast',
+       'Casa particular', 'Castle', 'Shared room in guesthouse',
+       'Room in heritage hotel', 'Shared room in serviced apartment',
+       'Lighthouse', 'Shared room in earthen home',
+       'Private room in chalet', 'Shared room in pension', 'Treehouse',
+       'Shared room in guest suite', 'Entire bungalow',
+       'Private room in bungalow', 'Shared room in aparthotel',
+       'Private room in cave', 'Private room in vacation home',
+       'Private room in camper/rv', 'Private room in pension',
+       'Entire home/apt', 'Pension', 'Shared room', 'Tower',
+       'Private room in cabin', 'Houseboat', 'Ice dome',
+       'Private room in dome', 'Shared room in boat',
+       'Private room in earthen home', 'Shared room in vacation home',
+       'Shared room in camper/rv', 'Dome', 'Private room in resort',
+       'Shared room in nature lodge', 'Shared room in plane', 'Campsite',
+       'Shared room in minsu', 'Shared room in ryokan',
+       'Shared room in hut', 'Barn', 'Private room in ryokan',
+       'Private room in tent', 'Shipping container', 'Bus',
+       'Shared room in farm stay'
         ])
 
     accommodates = st.slider('Número de Personas', min_value=1, max_value=17, value=1)
 
-    room_type = st.selectbox('Tipo de Habitación', options=['Private room', 'Entire home/apt', 'Shared room'])
+    room_type = st.selectbox('Tipo de Habitación', options=['Entire home/apt', 'Private room', 'Hotel room', 'Shared room'])
 
     maximum_nights = st.slider('Noches Máximas', min_value=1, max_value=100, value=1)
 
@@ -337,15 +396,24 @@ if selected == 'Modelado':
 
     if st.button('¡Descubre el precio!'):
         prediction = predict_model(model, data=input_data)
-        st.write(str(prediction["prediction_label"].values[0]) + ' euros')
-
+        st.write(str(prediction["prediction_label"].values[0].round(2)) + ' euros')
 
 
 
 
 if selected == 'Conclusión':
-        st.subheader('aca va Conclusión {selected}')
+        st.subheader('Conclusión')
+        """
+        Después de realizar el análisis del dataset, podemos llegar a las siguientes conclusiones sobre la oferta de alojamientos en la ciudad de Estambul:
 
+        * En total, hay 41,500 alojamientos disponibles en la plataforma Airbnb en Estambul.
+        * Los distritos con la mayor cantidad de ofertas de alojamiento son: Beyoglu, Sisli, Kadikoy y Fatih. Estos distritos destacan por tener una amplia variedad de opciones para los viajeros.
+        * El precio medio por noche de alojamiento en Estambul es de €91.12. Este valor representa el promedio de los precios de todos los alojamientos disponibles en la ciudad.
+        * El tipo de alojamiento más comúnmente ofrecido en Estambul es el ***"Casa/apartamento completo"***. Esto significa que la mayoría de los alojamientos disponibles en la plataforma son viviendas completas que los viajeros pueden reservar y disfrutar en su totalidad.
+
+        Estas conclusiones nos brindan una idea general sobre la oferta de alojamientos en Estambul a través de Airbnb y nos ayudan a comprender mejor el mercado de alojamiento en la ciudad.
+
+        """
 
 
 
