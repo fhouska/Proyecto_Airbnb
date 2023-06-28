@@ -40,7 +40,7 @@ colors = ['#AF1D56', '#FFDE59', '#CB6CE6', '#FF914D']
 """
 
 """
-st.title ("**Inisde Airbnb**")
+st.title ("**Inisde Airbnb - ESTAMBUL**")
 
 
 
@@ -163,7 +163,7 @@ if selected == 'Análisis Exploratorio':
     
     A continuación, se detallan las secciones del análisis y la funcionalidad del tablero de Power BI."""
 
-    tab1, tab2 , tab3, tab4, tab5= st.tabs(["Visualización de datos", "1. Distritos", "2. Precios","3. Alojamientos","4. Porpietarios"])
+    tab1, tab2 , tab3, tab4, tab5= st.tabs(["**Visualización de datos**", "**1.Distritos**", "**2.Precios**","**3.Alojamientos**","**4.Anfitriones**"])
 
 # TABLEREO POWER BI
     with tab1: 
@@ -174,13 +174,14 @@ if selected == 'Análisis Exploratorio':
 # ANALISIS DISTRITOS
 
     with tab2:
-        """ Estambul esta dividida por **39 distritos** en los cuales podemos ver según la gráfica y en el mapa que la mayoría de los hospedajes 
-        se encuentran en los distritos de: Beyoglu, Sisli, Kadikoy y Fatih."""
+        """ EEstambul está dividida por 39 distritos en los cuales podemos ver, según la gráfica y en el mapa, que la mayoría de los hospedajes se encuentran en los distritos de: Beyoglu, Sisli, Kadikoy y Fatih. 
+        Estos distritos tienen características únicas que los hacen atractivos para los visitantes y locales."""
         """
-        * **Beyoglu**: es la zona donde las comunidades extranjeras establecieron las embajadas y las iglesias, y donde en el siglo XX se levantaron grandes hoteles y tiendas más lujosas.
-        * **Sisli**: es el distrito de cines y lugares de ocio. Aquí se encuentran entre otras cosas salas de conciertos y teatros.
-        * **Kadikoy**: es un distrito residencial y es conocido por su mercado de pescado y productos agrícolas y por lo general los turistas y locales aprovecha a comprar especias, tés o frutos secos.
-        * **Fatih**: es el distrito donde se encuentra su barrio histórico, aquí se encuentra La mezquita de Fatih, que es una de las mas grandes de la ciudad, así como también el acueducto romano ente otras tantos edificios y monumentos históricos.
+        * **Beyoglu**: es reconocido por ser el lugar donde las comunidades extranjeras establecieron embajadas e iglesias en el pasado. En el siglo XX, este distrito fue testigo de la construcción de 
+        grandes hoteles y tiendas de lujo, lo que lo convierte en un centro de elegancia y sofisticación.
+        * **Sisli**: se destaca como el distrito de cines y lugares de ocio. Aquí se encuentran diversas salas de conciertos, teatros y otros espacios de entretenimiento. Es un lugar animado y vibrante que ofrece una amplia gama de actividades culturales para disfrutar.
+        * **Kadikoy**: por otro lado, es un distrito residencial conocido mercado de pescado y productos agrícolas. Tanto los turistas como los locales aprovechan la oportunidad de explorar este mercado y adquirir especias, tés y frutos secos frescos. Además, Kadikoy cuenta con una gran cantidad de restaurantes, cafeterías y tiendas que reflejan la vida cotidiana de la ciudad.
+        * **Fatih**: este distrito alberga el barrio histórico de Estambul. Aquí se encuentra la gran Mezquita de Fatih, una de las más grandes de la ciudad, así como el antiguo acueducto romano y otros impresionantes edificios y monumentos históricos. Fatih es un lugar de gran importancia cultural y atrae a los amantes de la historia y la arquitectura.
 
         """
 
@@ -217,14 +218,18 @@ if selected == 'Análisis Exploratorio':
 # ANALISIS PRECIOS 
     with tab3:
         """
-        Precios: Este gráfico se muestran los valores en euros para mejor entendimiento y dimensión. 
-        El precio medio de alojamientos en Estambul es **TRY 2.007,34  (liras turcas)** que equivalen a **EUR 91,12 ** euros al tipo de cambio del 26/06/23.
-        El distrito con mayor valor de media es el distrito de **Beylikduzu** con **€344,29**
-        Para los distritos con mayor distribución son:
+        En el análisis de precios de los alojamientos en Estambul, se observa que el precio medio es de **TRY 2.007,34** (liras turcas), lo que equivale a 
+        aproximadamente **EUR 91,12** al tipo de cambio del 26/06/23. Para tener una mejor comprensión y comparación, los valores se muestran en euros.
+        
+        El distrito de Beylikduzu se destaca como el distrito con el mayor valor medio de alojamientos, alcanzando los EUR 344,29. Esto contrasta con los distritos 
+        que presentan una mayor cantidad de hospedajes ofrecidos, donde los precios son más moderados:
         * Beyoglu: EUR 88,11
         * Sisli: EUR 82,55
         * Kadikoy: EUR 108,3
         * Fatih: EUR 91,03
+
+        Esto puede deberse a que el distrito de Beylikduzu ha experimentado un rápido desarrollo en los últimos años, presenta un gran desarrollo urbano, 
+        comodidades y una gran demanda de viviendas de alta calidad.
 
         """
         st.subheader(' ')
@@ -249,21 +254,24 @@ if selected == 'Análisis Exploratorio':
 # ANALISIS ALOJAMIENTOS
     with tab4:
         """
-        Con este gráfico podemos ver los diferentes alojamientos ofrecidos.
+        En el análisis de los alojamientos ofrecidos en Estambul, podemos observar a través de este gráfico la diversidad de opciones disponibles. 
+        Se pueden identificar diferentes tipos de habitaciones, así como una amplia variedad de tipos de propiedades.
         
-        Por un lado, están diferentes ***tipos de habitación***: 
+        En cuanto a los **tipos de habitación**, encontramos las siguientes categorías: 
         * Entire home/apt - (**Casa/apartamento completo**)
         * Private room - (**Habitación privada**)
         * Hotel room - (**Habitación de hotel**)
         * Shared room - (**Habitación compartida**)
 
-        Luego están los diferentes ***tipos de propiedad***: en los que se pueden diferenciar 109 diferentes tipos.
+        Por otro lado, en cuanto a los **tipos de propiedad**, se identifican 109 categorías diferentes. 
+        Estas van desde "Entire serviced apartment" (apartamento completo con servicio) hasta "Private room in tent" (habitación privada en tienda de campaña), 
+        lo que demuestra la amplia gama de opciones disponibles para los visitantes. Por esta razón en el gráfico se han representado únicamente los primeros 10 tipos de propiedad 
+        para proporcionar una muestra representativa de la variedad existente.
 
-        Por lo que podemos tener: “Entire serviced apartment”, que corresponden a apartamento completo con servicio hasta “Private room in tent” que son Habitación privada en tienda de campaña.
-        Lo que se puede ver que lo que mas se predomina es Casa/apartamento completo con mas de la mitad de los datos.
+        Con el tercer gráfico podemos destacar que el tipo de propiedad que predomina en Estambul es "Casa/apartamento completo" y "Entire rental unit", 
+        que representa más de la mitad de los alojamientos registrados. 
+        Esto indica que la mayoría de los viajeros prefieren tener un espacio privado y completo durante su estancia en la ciudad.
         """
-
-
 
         col1, col2 = st.columns(2)
         with col1:
@@ -306,23 +314,56 @@ if selected == 'Análisis Exploratorio':
             )
         st.plotly_chart(fig4)
 
-# ANALISIS PROPIETARIOS
+# ANALISIS ANFITRIONES
 
     with tab5:
+        """
+        Se llevó el análisis en función de las calificaciones y reseñas que presentan los anfitriones.
 
-        fig7 = px.box(df, x="review_scores_value",y= 'host_is_superhost',
-                    template="plotly_dark",
-                    color_discrete_sequence = colors
-                    )
+        En primer lugar, se examinó si los huéspedes mostraban preferencia por los anfitriones con la calificación de "Superhost". Sin embargo, 
+        se observó que los usuarios no presentaban preferencia por los Superhosts, ya que la mayoría de las reseñas dadas corresponde a los que no tienen 
+        calificación Superhost. Dentro de este análisis podemos ver que predominan las calificaciones en el rango de 4 a 5 en ambas categorías.
 
-        fig7.update_layout(
-            title='Numero de Reseñas',
-            xaxis=dict(title='Calificaciones'),
-            yaxis=dict(title=''),
-            bargap=0.1,
-            showlegend=True 
-            )
-        st.plotly_chart(fig7)
+        Posteriormente, se analizó la distribución de las respuestas de los anfitriones en función de la cantidad de reseñas recibidas. 
+        Específicamente, se examinaron los diferentes tipos de respuestas que ofrecen los anfitriones en relación con su tiempo de respuesta. 
+        Se observó que aquellos anfitriones que brindaban respuestas dentro de una hora tenían una mayor cantidad de reseñas en comparación con aquellos que 
+        tenían tiempos de respuesta más prolongados
+        """
+
+        col1, col2 = st.columns(2)
+        with col1:
+            df['host_is_superhost'] = df['host_is_superhost'].replace({"t": "Superhost", "f": "No_superhost"})
+            fig7 = px.box(df, x="review_scores_value",y= 'host_is_superhost',
+                        template="plotly_dark",
+                        color_discrete_sequence = colors
+                        )
+
+            fig7.update_layout(
+                title='Distribución de numero de reseñas por calificación superhost',
+                xaxis=dict(title='Calificaciones'),
+                yaxis=dict(title=''),
+                bargap=0.1,
+                showlegend=True 
+                )
+            st.plotly_chart(fig7)
+        
+        with col2:
+            response_time_rates = df.groupby(["host_response_time", 'review_scores_value'])["host_response_rate"].mean().reset_index()
+            fig8 = px.histogram(response_time_rates,x='host_response_time' ,y="review_scores_value", 
+                    template="plotly_dark", 
+                    marginal="box", 
+                    hover_data=response_time_rates.columns,
+                        color_discrete_sequence = [colors[3]]
+                        )
+                    
+            fig8.update_layout(
+                        title='Distribución de puntuaciones de huéspedes por tiempo de respuesta del anfitrión',
+                        xaxis=dict(title='Tiempo de respuesta'),
+                        yaxis=dict(title='Puntuaciones de huéspedes'),
+                        bargap=0.1,
+                        showlegend=True 
+                        )
+            st.plotly_chart(fig8)
 
 
  
@@ -419,16 +460,34 @@ if selected == 'Modelo Predictivo':
 if selected == 'Conclusión':
         st.subheader('Conclusión')
         """
-        Después de realizar el análisis del dataset, podemos llegar a las siguientes conclusiones sobre la oferta de alojamientos en la ciudad de Estambul:
+        Después analizar nuestras variables relacionada con la oferta de alojamientos en la ciudad de Estambul, podemos llegar a las siguientes conclusiones:
 
-        * En total, hay 41,500 alojamientos disponibles en la plataforma Airbnb en Estambul.
-        * Los distritos con la mayor cantidad de ofertas de alojamiento son: Beyoglu, Sisli, Kadikoy y Fatih. Estos distritos destacan por tener una amplia variedad de opciones para los viajeros.
-        * El precio medio por noche de alojamiento en Estambul es de €91.12. Este valor representa el promedio de los precios de todos los alojamientos disponibles en la ciudad.
-        * El tipo de alojamiento más comúnmente ofrecido en Estambul es el ***"Casa/apartamento completo"***. Esto significa que la mayoría de los alojamientos disponibles en la plataforma son viviendas completas que los viajeros pueden reservar y disfrutar en su totalidad.
+        * **Oferta de Alojamientos**: En Estambul, se encuentran disponibles un total de 41,500 alojamientos en la plataforma Airbnb. Esta cifra refleja una amplia 
+        variedad de opciones para los viajeros que visitan la ciudad.
+
+        * **Distritos Populares**: Los distritos más destacados en términos de oferta de alojamientos son Beyoglu, Sisli, Kadikoy y Fatih. Estos distritos destacan por 
+        tener una amplia variedad de opciones para los viajeros.
+        
+        * **Precio Medio**: El precio medio por noche de alojamiento en Estambul es de €91.12. Esta cifra proporciona una referencia útil para los viajeros que deseen 
+        planificar su presupuesto de alojamiento en la ciudad.
+
+        * **Tipo de Alojamiento**: El tipo de alojamiento más comúnmente ofrecido en Estambul es el "Casa/apartamento completo". Esto implica que la mayoría de los alojamientos 
+        disponibles son unidades residenciales completas que brindan privacidad y comodidad a los huéspedes.
+        
+        * **Calificación y Respuestas de los Anfitriones**: Aunque los Superhosts reciben reconocimiento por su excelencia en el servicio, no se observa una preferencia marcada 
+        por parte de los huéspedes hacia ellos. Sin embargo, se destaca la importancia de una pronta respuesta por parte de los anfitriones, ya que aquellos que responden rápidamente 
+        suelen recibir más reseñas de los huéspedes.
 
         Estas conclusiones nos brindan una idea general sobre la oferta de alojamientos en Estambul a través de Airbnb y nos ayudan a comprender mejor el mercado de alojamiento en la ciudad.
 
+        En cuanto a futuros análisis, se puede profundizar en el análisis de variables relacionadas con las reseñas:
+
+        * Como el sentimiento de los comentarios y su relación con la calificación de los anfitriones. 
+        * También es posible examinar las regulaciones y restricciones aplicables a los anfitriones en la ciudad, 
+        lo cual podría proporcionar una perspectiva adicional sobre el mercado de alojamiento en Estambul.
+
         """
+
 
 
 
