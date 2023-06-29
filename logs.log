@@ -3676,3 +3676,263 @@ The DataFrame has column names of mixed type. They will be converted to strings 
 2023-06-28 10:28:16,493:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
 2023-06-28 10:51:18,424:INFO:Initializing load_model()
 2023-06-28 10:51:18,424:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:17:35,919:INFO:Initializing load_model()
+2023-06-28 11:17:35,919:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:37:50,610:INFO:Initializing load_model()
+2023-06-28 11:37:50,610:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:38:29,874:INFO:Initializing load_model()
+2023-06-28 11:38:29,874:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:38:33,465:INFO:Initializing load_model()
+2023-06-28 11:38:33,465:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:38:35,808:INFO:Initializing load_model()
+2023-06-28 11:38:35,808:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:38:41,865:INFO:Initializing load_model()
+2023-06-28 11:38:41,865:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:38:43,817:INFO:Initializing load_model()
+2023-06-28 11:38:43,817:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:38:45,248:INFO:Initializing load_model()
+2023-06-28 11:38:45,248:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:38:54,123:INFO:Initializing load_model()
+2023-06-28 11:38:54,125:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:38:58,532:INFO:Initializing load_model()
+2023-06-28 11:38:58,534:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:38:58,658:INFO:Initializing predict_model()
+2023-06-28 11:38:58,658:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x000002769596A1A0>, estimator=Pipeline(memory=FastMemory(location=C:\Users\fabia\AppData\Local\Temp\joblib),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['accommodates', 'maximum_nights',
+                                             'minimum_nights'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['neighbourhood', 'property_type',
+                                             'room_type'],
+                                    transformer=SimpleImputer(strategy='most...
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['neighbourhood', 'property_type'],
+                                    transformer=TargetEncoder(cols=['neighbourhood',
+                                                                    'property_type'],
+                                                              handle_missing='return_nan'))),
+                ('remove_outliers',
+                 TransformerWrapper(transformer=RemoveOutliers(random_state=3934))),
+                ('actual_estimator', LinearRegression(n_jobs=-1))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000027695596E60>)
+2023-06-28 11:38:58,658:INFO:Checking exceptions
+2023-06-28 11:38:58,659:INFO:Preloading libraries
+2023-06-28 11:38:58,659:INFO:Set up data.
+2023-06-28 11:38:58,667:INFO:Set up index.
+2023-06-28 11:39:13,297:INFO:Initializing load_model()
+2023-06-28 11:39:13,297:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:39:15,675:INFO:Initializing load_model()
+2023-06-28 11:39:15,675:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 11:39:15,790:INFO:Initializing predict_model()
+2023-06-28 11:39:15,790:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000027693ED8910>, estimator=Pipeline(memory=FastMemory(location=C:\Users\fabia\AppData\Local\Temp\joblib),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['accommodates', 'maximum_nights',
+                                             'minimum_nights'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['neighbourhood', 'property_type',
+                                             'room_type'],
+                                    transformer=SimpleImputer(strategy='most...
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['neighbourhood', 'property_type'],
+                                    transformer=TargetEncoder(cols=['neighbourhood',
+                                                                    'property_type'],
+                                                              handle_missing='return_nan'))),
+                ('remove_outliers',
+                 TransformerWrapper(transformer=RemoveOutliers(random_state=3934))),
+                ('actual_estimator', LinearRegression(n_jobs=-1))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000027693FEBF40>)
+2023-06-28 11:39:15,790:INFO:Checking exceptions
+2023-06-28 11:39:15,790:INFO:Preloading libraries
+2023-06-28 11:39:15,791:INFO:Set up data.
+2023-06-28 11:39:15,798:INFO:Set up index.
+2023-06-28 12:12:23,169:INFO:Initializing load_model()
+2023-06-28 12:12:23,170:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:13:13,154:INFO:Initializing load_model()
+2023-06-28 12:13:13,155:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:13:16,921:INFO:Initializing load_model()
+2023-06-28 12:13:16,921:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:13:19,404:INFO:Initializing load_model()
+2023-06-28 12:13:19,404:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:13:22,185:INFO:Initializing load_model()
+2023-06-28 12:13:22,186:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:13:25,017:INFO:Initializing load_model()
+2023-06-28 12:13:25,018:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:13:27,611:INFO:Initializing load_model()
+2023-06-28 12:13:27,611:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:13:27,721:INFO:Initializing predict_model()
+2023-06-28 12:13:27,721:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000027695700D30>, estimator=Pipeline(memory=FastMemory(location=C:\Users\fabia\AppData\Local\Temp\joblib),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['accommodates', 'maximum_nights',
+                                             'minimum_nights'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['neighbourhood', 'property_type',
+                                             'room_type'],
+                                    transformer=SimpleImputer(strategy='most...
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['neighbourhood', 'property_type'],
+                                    transformer=TargetEncoder(cols=['neighbourhood',
+                                                                    'property_type'],
+                                                              handle_missing='return_nan'))),
+                ('remove_outliers',
+                 TransformerWrapper(transformer=RemoveOutliers(random_state=3934))),
+                ('actual_estimator', LinearRegression(n_jobs=-1))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x00000276952D7E20>)
+2023-06-28 12:13:27,722:INFO:Checking exceptions
+2023-06-28 12:13:27,723:INFO:Preloading libraries
+2023-06-28 12:13:27,730:INFO:Set up data.
+2023-06-28 12:13:27,739:INFO:Set up index.
+2023-06-28 12:39:09,711:INFO:Initializing load_model()
+2023-06-28 12:39:09,719:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:39:32,610:INFO:Initializing load_model()
+2023-06-28 12:39:32,610:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:39:35,878:INFO:Initializing load_model()
+2023-06-28 12:39:35,878:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:39:38,837:INFO:Initializing load_model()
+2023-06-28 12:39:38,838:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:39:40,935:INFO:Initializing load_model()
+2023-06-28 12:39:40,936:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:39:44,640:INFO:Initializing load_model()
+2023-06-28 12:39:44,640:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:39:49,263:INFO:Initializing load_model()
+2023-06-28 12:39:49,263:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 12:39:49,370:INFO:Initializing predict_model()
+2023-06-28 12:39:49,371:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x00000276958F3340>, estimator=Pipeline(memory=FastMemory(location=C:\Users\fabia\AppData\Local\Temp\joblib),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['accommodates', 'maximum_nights',
+                                             'minimum_nights'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['neighbourhood', 'property_type',
+                                             'room_type'],
+                                    transformer=SimpleImputer(strategy='most...
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['neighbourhood', 'property_type'],
+                                    transformer=TargetEncoder(cols=['neighbourhood',
+                                                                    'property_type'],
+                                                              handle_missing='return_nan'))),
+                ('remove_outliers',
+                 TransformerWrapper(transformer=RemoveOutliers(random_state=3934))),
+                ('actual_estimator', LinearRegression(n_jobs=-1))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x000002769B303520>)
+2023-06-28 12:39:49,372:INFO:Checking exceptions
+2023-06-28 12:39:49,372:INFO:Preloading libraries
+2023-06-28 12:39:49,378:INFO:Set up data.
+2023-06-28 12:39:49,387:INFO:Set up index.
+2023-06-28 13:03:48,790:INFO:Initializing load_model()
+2023-06-28 13:03:48,791:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:19:51,803:INFO:Initializing load_model()
+2023-06-28 13:19:51,803:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:39:50,205:INFO:Initializing load_model()
+2023-06-28 13:39:50,205:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:40:12,333:INFO:Initializing load_model()
+2023-06-28 13:40:12,334:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:40:13,850:INFO:Initializing load_model()
+2023-06-28 13:40:13,850:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:40:15,453:INFO:Initializing load_model()
+2023-06-28 13:40:15,454:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:40:22,029:INFO:Initializing load_model()
+2023-06-28 13:40:22,029:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:40:24,101:INFO:Initializing load_model()
+2023-06-28 13:40:24,101:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:40:25,508:INFO:Initializing load_model()
+2023-06-28 13:40:25,508:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:40:27,802:INFO:Initializing load_model()
+2023-06-28 13:40:27,803:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 13:40:27,902:INFO:Initializing predict_model()
+2023-06-28 13:40:27,902:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000027697A98CA0>, estimator=Pipeline(memory=FastMemory(location=C:\Users\fabia\AppData\Local\Temp\joblib),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['accommodates', 'maximum_nights',
+                                             'minimum_nights'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['neighbourhood', 'property_type',
+                                             'room_type'],
+                                    transformer=SimpleImputer(strategy='most...
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['neighbourhood', 'property_type'],
+                                    transformer=TargetEncoder(cols=['neighbourhood',
+                                                                    'property_type'],
+                                                              handle_missing='return_nan'))),
+                ('remove_outliers',
+                 TransformerWrapper(transformer=RemoveOutliers(random_state=3934))),
+                ('actual_estimator', LinearRegression(n_jobs=-1))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000027699EABBE0>)
+2023-06-28 13:40:27,903:INFO:Checking exceptions
+2023-06-28 13:40:27,903:INFO:Preloading libraries
+2023-06-28 13:40:27,904:INFO:Set up data.
+2023-06-28 13:40:27,909:INFO:Set up index.
+2023-06-28 14:36:27,006:INFO:Initializing load_model()
+2023-06-28 14:36:27,011:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:15,954:INFO:Initializing load_model()
+2023-06-28 15:59:15,954:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:36,620:INFO:Initializing load_model()
+2023-06-28 15:59:36,620:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:40,931:INFO:Initializing load_model()
+2023-06-28 15:59:40,932:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:43,701:INFO:Initializing load_model()
+2023-06-28 15:59:43,701:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:46,889:INFO:Initializing load_model()
+2023-06-28 15:59:46,889:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:48,587:INFO:Initializing load_model()
+2023-06-28 15:59:48,588:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:50,496:INFO:Initializing load_model()
+2023-06-28 15:59:50,497:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:53,093:INFO:Initializing load_model()
+2023-06-28 15:59:53,094:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:53,188:INFO:Initializing predict_model()
+2023-06-28 15:59:53,188:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x00000276F9861570>, estimator=Pipeline(memory=FastMemory(location=C:\Users\fabia\AppData\Local\Temp\joblib),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['accommodates', 'maximum_nights',
+                                             'minimum_nights'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['neighbourhood', 'property_type',
+                                             'room_type'],
+                                    transformer=SimpleImputer(strategy='most...
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['neighbourhood', 'property_type'],
+                                    transformer=TargetEncoder(cols=['neighbourhood',
+                                                                    'property_type'],
+                                                              handle_missing='return_nan'))),
+                ('remove_outliers',
+                 TransformerWrapper(transformer=RemoveOutliers(random_state=3934))),
+                ('actual_estimator', LinearRegression(n_jobs=-1))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000027695977F40>)
+2023-06-28 15:59:53,188:INFO:Checking exceptions
+2023-06-28 15:59:53,188:INFO:Preloading libraries
+2023-06-28 15:59:53,188:INFO:Set up data.
+2023-06-28 15:59:53,200:INFO:Set up index.
+2023-06-28 15:59:58,885:INFO:Initializing load_model()
+2023-06-28 15:59:58,886:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-06-28 15:59:59,025:INFO:Initializing predict_model()
+2023-06-28 15:59:59,025:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000027695417AF0>, estimator=Pipeline(memory=FastMemory(location=C:\Users\fabia\AppData\Local\Temp\joblib),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['accommodates', 'maximum_nights',
+                                             'minimum_nights'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['neighbourhood', 'property_type',
+                                             'room_type'],
+                                    transformer=SimpleImputer(strategy='most...
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['neighbourhood', 'property_type'],
+                                    transformer=TargetEncoder(cols=['neighbourhood',
+                                                                    'property_type'],
+                                                              handle_missing='return_nan'))),
+                ('remove_outliers',
+                 TransformerWrapper(transformer=RemoveOutliers(random_state=3934))),
+                ('actual_estimator', LinearRegression(n_jobs=-1))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x000002769592BD00>)
+2023-06-28 15:59:59,026:INFO:Checking exceptions
+2023-06-28 15:59:59,027:INFO:Preloading libraries
+2023-06-28 15:59:59,029:INFO:Set up data.
+2023-06-28 15:59:59,040:INFO:Set up index.
