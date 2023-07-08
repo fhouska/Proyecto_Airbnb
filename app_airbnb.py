@@ -33,7 +33,7 @@ st.set_page_config(page_title="Insideairbnb_Estambul",page_icon="📍",layout= '
 st.set_option('deprecation.showPyplotGlobalUse', False) 
 
 # ------- COSAS QUE VAMOS A USAR EN TODA LA APP----------------------------#
-df = pd.read_csv('df_limpio.csv')
+df = pd.read_csv('doc_processed/df_limpio.csv')
 colors = ['#AF1D56', '#FFDE59', '#CB6CE6', '#FF914D']
 
 # ------- TITULO-----------------------------------------------------------#
@@ -128,7 +128,7 @@ if selected == 'Limpieza de Datos':
 
     **4 - Identificación de valores nulos**: Los valores nulos obtenidos se presentarán en la siguiente tabla:
     """
-    df_null = pd.read_csv('df.csv')
+    df_null = pd.read_csv('doc_processed/df.csv')
     df_null_percentage = pd.isnull(df_null).sum()/len(df_null)*100 #Calculamos el % del los datos faltantes en cada columna
     nulos_totales= df_null_percentage.sort_values(ascending = False).round(2) #Ordenamos de mayor a menor
     nulos_totales = pd.DataFrame(nulos_totales,columns=["% nulos"])
@@ -396,7 +396,7 @@ if selected == 'Modelo Predictivo':
     En la implementación de este modelo, utilizamos la biblioteca **pycaret**.
 
     """
-    model = load_model('ml_airbnb')
+    model = load_model('doc_procesado/ml_airbnb.pkl')
 
     st.title('Predicción de Precios de Airbnb en Estambul')
 
