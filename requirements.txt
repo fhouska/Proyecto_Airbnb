@@ -9,5 +9,3 @@ geopandas
 branca
 pycaret
 folium
-PIL
-warnings
