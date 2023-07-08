@@ -8,3 +8,6 @@ streamlit_option_menu
 geopandas
 branca
 pycaret
+folium
+PIL
+warnings
