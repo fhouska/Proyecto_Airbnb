@@ -27,7 +27,7 @@ from pycaret.regression import load_model, predict_model
 
 
 # ------- CONFIGURACION DE LA PAGINA---------------------------------------#
- st.set_page_config(page_title="Insideairbnb_Estambul",page_icon="📍",layout= 'wide',page_bg_color="#FFF")
+st.set_page_config(page_title="Insideairbnb_Estambul",page_icon="📍",layout= 'wide',page_bg_color="#FFF")
 
 # """(para que no nos muestre (los waring) lo que cabia de streamlist y nos muestre solo lo que hagamos)"""
 st.set_option('deprecation.showPyplotGlobalUse', False) 
