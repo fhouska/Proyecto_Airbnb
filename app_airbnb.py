@@ -47,7 +47,7 @@ st.title ("**Inisde Airbnb - ESTAMBUL**")
 
 
 # ------- SIDE BAR----------------------------------------------------------#
-image = Image.open('info/estambul.png')
+image = Image.open('Info/estambul.png')
 st.sidebar.image(image, caption='',width=300)
 st.sidebar.title ('Inisde Airbnb')
 
@@ -62,11 +62,11 @@ if selected == 'Introducción':
 
     col1, col2 = st.columns(2)
     with col1:
-        image2 = Image.open('info/foto_estambul.jpg')
+        image2 = Image.open('Info/foto_estambul.jpg')
         st.image(image2, caption='',width=550)
     with col2:
 
-        image3 = Image.open('info/mapa.png')
+        image3 = Image.open('Info/mapa.png')
         st.image(image3, caption='',width=600)
     
     st.subheader('')
