@@ -5119,3 +5119,15 @@ THIS IS A JOBLIB ISSUE. If you can, kindly provide the joblib's team with an
 2023-07-08 18:31:49,217:INFO:Preloading libraries
 2023-07-08 18:31:49,218:INFO:Set up data.
 2023-07-08 18:31:49,223:INFO:Set up index.
+2023-07-08 19:06:39,833:INFO:Initializing load_model()
+2023-07-08 19:06:39,834:INFO:load_model(model_name=ml_airbnb, platform=None, authentication=None, verbose=True)
+2023-07-08 19:28:46,194:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2023-07-08 19:28:46,194:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2023-07-08 19:28:46,194:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2023-07-08 19:28:46,194:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2023-07-08 19:28:47,270:WARNING:
+'prophet' is a soft dependency and not included in the pycaret installation. Please run: `pip install prophet` to install.
