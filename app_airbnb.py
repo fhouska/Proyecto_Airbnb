@@ -25,11 +25,9 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 # Modelo
 from pycaret.regression import load_model, predict_model
 
-# [theme]
-backgroundColor = "#FFF"
 
 # ------- CONFIGURACION DE LA PAGINA---------------------------------------#
-st.set_page_config(page_title="Insideairbnb_Estambul",page_icon="📍",layout= 'wide')
+st.set_page_config(page_title="Insideairbnb_Estambul",page_icon="📍",layout= 'wide',page_bg_color="white")
 # """(para que no nos muestre (los waring) lo que cabia de streamlist y nos muestre solo lo que hagamos)"""
 st.set_option('deprecation.showPyplotGlobalUse', False) 
 
