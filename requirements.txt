@@ -6,3 +6,4 @@ seaborn
 plotly
 streamlit_option_menu
 geopandas
+branca
