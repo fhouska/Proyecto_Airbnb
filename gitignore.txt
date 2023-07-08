@@ -1,6 +1,0 @@
-
-data/calendar.csv
-data/listings_details.csv
-data/reviews_details.csv
-Info/Airbnb_Esrambul.docx
-Info/Inside Airbnb Data Dictionary.xlsx
