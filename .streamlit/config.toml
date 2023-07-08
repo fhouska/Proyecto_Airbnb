@@ -1,4 +1,3 @@
-[theme] # You have to add this line
-
-
-backgroundColor = #FFFFFF
+[theme]
+base="light"
+primaryColor="#af1d56"
