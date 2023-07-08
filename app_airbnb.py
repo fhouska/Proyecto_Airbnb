@@ -167,7 +167,7 @@ if selected == 'Análisis Exploratorio':
 
     tab1, tab2 , tab3, tab4, tab5= st.tabs(["**Visualización de datos**", "**1.Distritos**", "**2.Precios**","**3.Alojamientos**","**4.Anfitriones**"])
 
-TABLEREO POWER BI
+# TABLEREO POWER BI
     with tab1: 
         link = '<iframe title="Airbnb_Estambul" width="1540" height="841.25" src="https://app.powerbi.com/reportEmbed?reportId=d15b01e9-003c-41df-aeb4-a4728af89d08&autoAuth=true&ctid=8aebddb6-3418-43a1-a255-b964186ecc64" frameborder="0" allowFullScreen="true"></iframe>'
         st.markdown(link, unsafe_allow_html=True)  
