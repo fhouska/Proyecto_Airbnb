@@ -34,8 +34,6 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # ------- COSAS QUE VAMOS A USAR EN TODA LA APP----------------------------#
 df = pd.read_csv('doc_processed/df_limpio.csv')
-neighbourhood = pd.read_json('data/neighbourhoods.geojson')
-
 colors = ['#AF1D56', '#FFDE59', '#CB6CE6', '#FF914D']
 
 # ------- TITULO-----------------------------------------------------------#
@@ -215,7 +213,7 @@ if selected == 'Análisis Exploratorio':
             dfneighbourhood = dfneighbourhood.reset_index()
             adam = gpd.read_file("data/neighbourhoods.geojson")
             fig2 = px.choropleth_mapbox(dfneighbourhood, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'count', 
-                                        color_continuous_scale='magma', title="Distritos de Estambul",zoom=10, hover_data = ['neighbourhood','count'],
+                                        color_continuous_scale='magma', title="Distritos de Estambul",zoom=10, hover_data = ['neighbourhood'],
                                         mapbox_style="carto-positron",width=700, height=700,center = {"lat": 41.0036, "lon": 28.9737})
             fig2.update(layout_coloraxis_showscale=True)
             fig2.update_layout( paper_bgcolor="#fff",font_color="#AF1D56",title_font_size=20, title_x = 0.2)
