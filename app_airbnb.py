@@ -209,8 +209,7 @@ if selected == 'Análisis Exploratorio':
             st.plotly_chart(fig1)
              
         with col2:
-            dfneighbourhood = pd.DataFrame(neighbourhood_count)
-            dfneighbourhood = dfneighbourhood.reset_index()
+            dfneighbourhood = pd.DataFrame(neighbourhood_count).reset_index()
             adam = gpd.read_file("data/neighbourhoods.geojson")            
             fig2 = px.choropleth_mapbox(dfneighbourhood, geojson=adam, featureidkey='properties.neighbourhood', locations="neighbourhood", color='count', 
                                         color_continuous_scale='magma', title="Distritos de Estambul", zoom=10, hover_data=['neighbourhood', 'count'],
