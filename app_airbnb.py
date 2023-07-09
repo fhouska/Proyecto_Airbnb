@@ -212,8 +212,9 @@ if selected == 'Análisis Exploratorio':
             dfneighbourhood = pd.DataFrame(neighbourhood_count)
             dfneighbourhood = dfneighbourhood.reset_index()
             adam = gpd.read_file("data/neighbourhoods.geojson")
+            hover_data = ['neighbourhood', 'count']
             fig2 = px.choropleth_mapbox(dfneighbourhood, geojson=adam, featureidkey='properties.neighbourhood', locations="neighbourhood", color='count', 
-                                        color_continuous_scale='magma', title="Distritos de Estambul", zoom=10, hover_data=['neighbourhood', 'count'],
+                                        color_continuous_scale='magma', title="Distritos de Estambul", zoom=10, hover_data=hover_data,
                                         mapbox_style="carto-positron", width=700, height=700, center={"lat": 41.0036, "lon": 28.9737})
             fig2.update(layout_coloraxis_showscale=True)
             fig2.update_layout(paper_bgcolor="#fff", font_color="#AF1D56", title_font_size=20, title_x=0.2)
