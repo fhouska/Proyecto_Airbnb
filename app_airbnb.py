@@ -191,7 +191,7 @@ if selected == 'Análisis Exploratorio':
 
 # ------- COL-------------------------------------------------------------#
         col1, col2 = st.columns(2)
-        neighbourhood_count=df['neighbourhood'].value_counts().sort_values(ascending=True)
+        neighbourhood_count=df.groupby('neighbourhood')['neighbourhood'].count().sort_values(ascending=True)
         with col1:            
             fig1 = px.bar(neighbourhood_count, orientation='h', 
                 template= "plotly_dark",
@@ -210,7 +210,7 @@ if selected == 'Análisis Exploratorio':
              
         with col2:
             dfneighbourhood = pd.DataFrame(neighbourhood_count)
-            dfneighbourhood = dfneighbourhood.reset_index()
+            dfneighbourhood = dfneighbourhood.rename(columns={'neighbourhood':'count'}).reset_index()
             adam = gpd.read_file("data/neighbourhoods.geojson")            
             fig2 = px.choropleth_mapbox(dfneighbourhood, geojson=adam, featureidkey='properties.neighbourhood', locations="neighbourhood", color='count', 
                                         color_continuous_scale='magma', title="Distritos de Estambul", zoom=10, hover_data=['neighbourhood', 'count'],
