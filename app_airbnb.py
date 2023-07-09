@@ -191,8 +191,8 @@ if selected == 'Análisis Exploratorio':
 
 # ------- COL-------------------------------------------------------------#
         col1, col2 = st.columns(2)
-        with col1:
-            neighbourhood_count=df['neighbourhood'].value_counts().sort_values(ascending=True)
+        neighbourhood_count=df['neighbourhood'].value_counts().sort_values(ascending=True)
+        with col1:            
             fig1 = px.bar(neighbourhood_count, orientation='h', 
                 template= "plotly_dark",
                 color_discrete_sequence = [colors[3]],
@@ -210,25 +210,16 @@ if selected == 'Análisis Exploratorio':
              
         with col2:
 
-            # df_neighbourhood = pd.DataFrame(neighbourhood_count)
-            # df_neighbourhood = df_neighbourhood.reset_index()
-            # adam = gpd.read_file("data/neighbourhoods.geojson")            
-            # fig2 = px.choropleth_mapbox(df_neighbourhood, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'count', 
-            #                             color_continuous_scale='magma', title="Precio promedio de alojamientos por distrito",zoom=9, hover_data = ['neighbourhood','count'],
-            #                             mapbox_style="carto-positron",width=1350, height=700,center = {"lat": 41.0035, "lon": 28.9737})
-            # fig2.update(layout_coloraxis_showscale=True)
-            # fig2.update_layout( paper_bgcolor="#fff",font_color="#AF1D56",title_font_size=30, title_x = 0.2)
-            # st.plotly_chart(fig2)
-            price_mean = df.groupby('neighbourhood')['price_euro'].mean().round(2).sort_values(ascending=True)
-            dfprice_meand = pd.DataFrame(price_mean)
-            dfneighbourhood2 = dfprice_meand.reset_index()
-            adam = gpd.read_file("data/neighbourhoods.geojson")
-            fig3 = px.choropleth_mapbox(dfneighbourhood2, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'price_euro', 
-                                        color_continuous_scale='magma', title="Precio promedio de alojamientos por distrito",zoom=9, hover_data = ['neighbourhood','price_euro'],
+            df_neighbourhood = pd.DataFrame(neighbourhood_count)
+            df_neighbourhood = df_neighbourhood.reset_index()
+            adam = gpd.read_file("data/neighbourhoods.geojson")            
+            fig2 = px.choropleth_mapbox(df_neighbourhood, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'count', 
+                                        color_continuous_scale='magma', title="Precio promedio de alojamientos por distrito",zoom=9, hover_data = ['neighbourhood','count'],
                                         mapbox_style="carto-positron",width=1350, height=700,center = {"lat": 41.0035, "lon": 28.9737})
-            fig3.update(layout_coloraxis_showscale=True)
-            fig3.update_layout( paper_bgcolor="#fff",font_color="#AF1D56",title_font_size=30, title_x = 0.2)
-            st.plotly_chart(fig3)
+            fig2.update(layout_coloraxis_showscale=True)
+            fig2.update_layout( paper_bgcolor="#fff",font_color="#AF1D56",title_font_size=30, title_x = 0.2)
+            st.plotly_chart(fig2)
+            
 
 # ANALISIS PRECIOS 
     with tab3:
