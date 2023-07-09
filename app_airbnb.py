@@ -192,8 +192,8 @@ if selected == 'Análisis Exploratorio':
 # ------- COL-------------------------------------------------------------#
         col1, col2 = st.columns(2)
         with col1:
-            neighbourhood_coun=df['neighbourhood'].value_counts().sort_values(ascending=True)
-            fig1 = px.bar(neighbourhood_coun, orientation='h', 
+            neighbourhood_count=df['neighbourhood'].value_counts().sort_values(ascending=True)
+            fig1 = px.bar(neighbourhood_count, orientation='h', 
                 template= "plotly_dark",
                 color_discrete_sequence = [colors[3]],
                 height=700,
@@ -209,7 +209,7 @@ if selected == 'Análisis Exploratorio':
             st.plotly_chart(fig1)
              
         with col2:
-            dfneighbourhood = pd.DataFrame(neighbourhood_coun)
+            dfneighbourhood = pd.DataFrame(neighbourhood_count)
             dfneighbourhood = dfneighbourhood.reset_index()
             adam = gpd.read_file("data/neighbourhoods.geojson")
             fig2 = px.choropleth_mapbox(dfneighbourhood, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'count', 
