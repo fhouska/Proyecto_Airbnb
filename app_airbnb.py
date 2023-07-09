@@ -396,7 +396,7 @@ if selected == 'Modelo Predictivo':
     En la implementación de este modelo, utilizamos la biblioteca **pycaret**.
 
     """
-    model = load_model('doc_procesado/ml_airbnb.pkl')
+    model = load_model('doc_processed/ml_airbnb.pkl')
 
     st.title('Predicción de Precios de Airbnb en Estambul')
 
