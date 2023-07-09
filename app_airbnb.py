@@ -34,6 +34,8 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # ------- COSAS QUE VAMOS A USAR EN TODA LA APP----------------------------#
 df = pd.read_csv('doc_processed/df_limpio.csv')
+neighbourhood = pd.read_json('data/neighbourhoods.geojson')
+
 colors = ['#AF1D56', '#FFDE59', '#CB6CE6', '#FF914D']
 
 # ------- TITULO-----------------------------------------------------------#
