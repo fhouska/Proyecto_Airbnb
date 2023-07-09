@@ -257,9 +257,9 @@ if selected == 'Análisis Exploratorio':
 
 
         dfprice_meand = pd.DataFrame(price_mean)
-        dfneighbourhood = dfprice_meand.reset_index()
+        dfneighbourhood2 = dfprice_meand.reset_index()
         adam = gpd.read_file("data/neighbourhoods.geojson")
-        fig3 = px.choropleth_mapbox(dfneighbourhood, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'price_euro', 
+        fig3 = px.choropleth_mapbox(dfneighbourhood2, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'price_euro', 
                                     color_continuous_scale='magma', title="Precio promedio de alojamientos por distrito",zoom=9, hover_data = ['neighbourhood','price_euro'],
                                     mapbox_style="carto-positron",width=1350, height=700,center = {"lat": 41.0035, "lon": 28.9737})
         fig3.update(layout_coloraxis_showscale=True)
