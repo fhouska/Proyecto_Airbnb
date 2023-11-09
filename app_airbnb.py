@@ -270,8 +270,6 @@ if selected == 'Análisis Exploratorio':
 
 
 
-
-
 # ANALISIS ALOJAMIENTOS
     with tab4:
         """
