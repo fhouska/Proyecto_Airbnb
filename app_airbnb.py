@@ -192,7 +192,8 @@ if selected == 'Análisis Exploratorio':
 # ------- COL-------------------------------------------------------------#
         col1, col2 = st.columns(2)
         neighbourhood_count=df['neighbourhood'].value_counts().sort_values(ascending=True)
-        with col1:            
+        with col1:
+            st.markdown("<h1 style='text-align: center;'> </h1>", unsafe_allow_html=True)            
             fig1 = px.bar(neighbourhood_count, orientation='h', 
                 template= "plotly_dark",
                 color_discrete_sequence = [colors[3]],
@@ -209,16 +210,14 @@ if selected == 'Análisis Exploratorio':
             st.plotly_chart(fig1)
              
         with col2:
-
-            df_neighbourhood = pd.DataFrame(neighbourhood_count)
-            df_neighbourhood = df_neighbourhood.reset_index()
-            adam = gpd.read_file("data/neighbourhoods.geojson")            
-            fig2 = px.choropleth_mapbox(df_neighbourhood, geojson=adam, featureidkey='properties.neighbourhood',locations ="neighbourhood",color = 'count', 
-                                        color_continuous_scale='magma', title="Precio promedio de alojamientos por distrito",zoom=9, hover_data = ['neighbourhood','count'],
-                                        mapbox_style="carto-positron",width=1350, height=700,center = {"lat": 41.0035, "lon": 28.9737})
-            fig2.update(layout_coloraxis_showscale=True)
-            fig2.update_layout( paper_bgcolor="#fff",font_color="#AF1D56",title_font_size=30, title_x = 0.2)
-            st.plotly_chart(fig2)
+            st.markdown("<h1 style='text-align: center;'> </h1>", unsafe_allow_html=True)
+            # Ruta al archivo HTML
+            archivo_html = "data/Distritosmapa.html"
+        
+            # Leer el mapa HTML con la codificación UTF-8
+            with open(archivo_html, 'r', encoding='utf-8') as f:
+                contenido_html = f.read()
+            st.components.v1.html(contenido_html, width=1000, height=500)
             
 
 # ANALISIS PRECIOS 
