@@ -67,7 +67,6 @@ if selected == 'Introducción':
         image2 = Image.open('Info/foto_estambul.jpg')
         st.image(image2, caption='',width=550)
     with col2:
-
         image3 = Image.open('Info/mapa.png')
         st.image(image3, caption='',width=600)
     
@@ -197,8 +196,8 @@ if selected == 'Análisis Exploratorio':
             fig1 = px.bar(neighbourhood_count, orientation='h', 
                 template= "plotly_dark",
                 color_discrete_sequence = [colors[3]],
-                height=700,
-                width=600    
+                height=600,
+                width=550   
                 )
             fig1.update_layout(
                 title='Distribución de distritos',
